@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>잘마시조 Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='dashboard.css') }}">
+
+</head>
+
+<body>
+
+<div class="background-circle bg1"></div>
+<div class="background-circle bg2"></div>
+<div class="background-circle bg3"></div>
+
+<div class="container">
+
+    <header>
+
+        <h1>💧 잘마시조</h1>
+
+        <p class="welcome">
+
+            안녕하세요,
+            <b>{{ user.name }}</b>님 👋
+
+        </p>
+
+        <p class="message">
+
+            오늘도 건강한 하루 보내세요!
+
+        </p>
+
+    </header>
+
+
+    <!-- ========================= -->
+    <!-- Smart Coaster -->
+    <!-- ========================= -->
+
+    <section class="coaster">
+        <div class="ring-shadow"></div>
+
+        <div class="ring-light"></div>
+
+        <div class="ring">
+
+            <svg class="progress-svg"
+                width="240"
+                height="240">
+
+                <circle
+                    class="ring-bg"
+                    cx="120"
+                    cy="120"
+                    r="100">
+                </circle>
+
+                <circle
+                    id="progressCircle"
+                    class="ring-progress"
+                    cx="120"
+                    cy="120"
+                    r="100">
+                </circle>
+
+            </svg>
+
+            <div class="ring-content">
+
+                <div class="cup">
+
+                    ☕
+
+                </div>
+
+                <h2>
+
+                    {{percent}}%
+
+                </h2>
+
+                <p>
+
+                    {{today_water}}
+                    /
+                    {{goal}}
+                    ml
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <p class="coaster-title">
+
+            SMART COASTER
+
+        </p>
+
+    </section>
+
+
+    <!-- ========================= -->
+    <!-- 카드 -->
+    <!-- ========================= -->
+
+    <section class="cards">
+
+        <div class="card">
+
+            <div class="icon">
+
+                💧
+
+            </div>
+
+            <h3>
+
+                오늘 음수량
+
+            </h3>
+
+            <h2>
+
+                {{today_water}} ml
+
+            </h2>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">
+
+                ☕
+
+            </div>
+
+            <h3>
+
+                카페인
+
+            </h3>
+
+            <h2>
+
+                {{caffeine}} mg
+
+            </h2>
+
+            <p class="status">
+
+                😊 적정
+
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">
+
+                🍬
+
+            </div>
+
+            <h3>
+
+                당류
+
+            </h3>
+
+            <h2>
+
+                {{sugar}} g
+
+            </h2>
+
+            <p class="status">
+
+                😊 적정
+
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">
+
+                🎯
+
+            </div>
+
+            <h3>
+
+                목표 달성
+
+            </h3>
+
+            <h2>
+
+                {{percent}}%
+
+            </h2>
+
+            <div class="progress">
+
+                <div
+                    id="progressBar"
+                    class="progress-bar"
+                    data-percent="{{percent}}">
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ========================= -->
+    <!-- 최근 음료 -->
+    <!-- ========================= -->
+
+    <section class="drink-section">
+
+        <h2>
+
+            🥤 최근 등록한 음료
+
+        </h2>
+
+        <div class="drink-grid">
+
+            {% for drink in drinks %}
+
+            <div class="drink-card">
+
+                <h3>
+
+                    {{drink.name}}
+
+                </h3>
+
+                <p>
+
+                    💧 {{drink.amount}} ml
+
+                </p>
+
+                <p>
+
+                    ☕ {{drink.caffeine}} mg
+
+                </p>
+
+                <p>
+
+                    🍬 {{drink.sugar}} g
+
+                </p>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+
+    <!-- ========================= -->
+    <!-- 응원 메시지 -->
+    <!-- ========================= -->
+
+    <section class="today-message">
+
+        <h2>
+
+            🎉 오늘의 메시지
+
+        </h2>
+
+        <div class="message-box">
+
+            목표까지
+
+            <b>{{remain}} ml</b>
+
+            남았습니다!
+
+        </div>
+
+    </section>
+
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>

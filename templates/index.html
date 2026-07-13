@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>잘마시조 사용자 설정</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>잘마시조 스마트 컵받침</h1>
+<p class="subtitle">사용자 정보와 자주 마시는 음료를 등록해주세요.</p>
+
+<form method="POST" class="form-box">
+
+<section class="card">
+
+<h2>1. 사용자 기본 정보</h2>
+
+<label>이름</label>
+<input type="text" name="name" required>
+
+<label>나이</label>
+<input type="number" name="age" required>
+
+<label>체중(kg)</label>
+<input type="number" step="0.1" name="weight" required>
+
+<p class="hint">
+권장 음수량 = 몸무게 ×30×1/2
+</p>
+
+</section>
+
+<section class="card">
+
+<h2>2. 사용자 타입 선택</h2>
+
+<label class="check">
+<input type="checkbox" name="disease" value="diabetes">
+당뇨
+</label>
+
+<label class="check">
+<input type="checkbox" name="disease" value="hyperlipidemia">
+고지혈증
+</label>
+
+<label class="check">
+<input type="checkbox" name="disease" value="cirrhosis">
+간경화
+</label>
+
+<label class="check">
+<input type="checkbox" name="disease" value="heart_failure">
+심부전
+</label>
+
+</section>
+
+<section class="card">
+
+<h2>3. 자주 마시는 음료 등록</h2>
+
+<div class="drink-table">
+
+<div class="drink-row header">
+<span>음료 이름</span>
+<span>용량(ml)</span>
+<span>카페인(mg)</span>
+<span>당류(g)</span>
+<span></span>
+</div>
+
+<div id="drink-container">
+
+<div class="drink-row">
+
+<input type="text" name="drink_name" placeholder="예: 아메리카노">
+
+<input type="number" name="drink_amount" placeholder="355">
+
+<input type="number" name="drink_caffeine" placeholder="150">
+
+<input type="number" name="drink_sugar" placeholder="0">
+
+<button
+type="button"
+class="delete-btn"
+onclick="removeRow(this)">
+삭제
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<button
+type="button"
+id="addDrink">
++ 더 입력하기
+</button>
+
+</section>
+
+<button type="submit">
+사용자 설정 저장하기
+</button>
+
+</form>
+
+{% if user %}
+
+<section class="result-box">
+
+<h2>저장된 사용자 정보</h2>
+
+<div class="summary-grid">
+
+<div class="summary-card">
+<h3>사용자</h3>
+<p>{{ user.name }}</p>
+</div>
+
+<div class="summary-card">
+<h3>타입</h3>
+<p>{{ user.user_type }}</p>
+</div>
+
+<div class="summary-card">
+<h3>체중</h3>
+<p>{{ user.weight }}kg</p>
+</div>
+
+<div class="summary-card">
+<h3>권장 음수량</h3>
+<p>{{ user.recommended_water }}ml</p>
+</div>
+
+</div>
+
+<h2>등록된 음료</h2>
+
+{% if drinks %}
+
+<div class="drink-buttons">
+
+{% for drink in drinks %}
+
+<button class="drink-button" type="button">
+
+{{ drink.name }}
+
+<span>
+
+{{ drink.amount }}ml /
+카페인 {{ drink.caffeine }}mg /
+당류 {{ drink.sugar }}g
+
+</span>
+
+</button>
+
+{% endfor %}
+
+</div>
+
+{% endif %}
+
+</section>
+
+{% endif %}
+
+</div>
+
+<script>
+
+const addButton=document.getElementById("addDrink");
+const container=document.getElementById("drink-container");
+
+addButton.onclick=function(){
+
+const row=document.createElement("div");
+
+row.className="drink-row";
+
+row.innerHTML=`
+
+<input type="text" name="drink_name">
+
+<input type="number" name="drink_amount">
+
+<input type="number" name="drink_caffeine">
+
+<input type="number" name="drink_sugar">
+
+<button
+type="button"
+class="delete-btn"
+onclick="removeRow(this)">
+삭제
+</button>
+
+`;
+
+container.appendChild(row);
+
+}
+
+function removeRow(btn){
+
+const rows=document.querySelectorAll(".drink-row");
+
+if(rows.length>1){
+
+btn.parentElement.remove();
+
+}
+
+}
+
+</script>
+
+</body>
+</html>

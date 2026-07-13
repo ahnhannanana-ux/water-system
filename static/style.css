@@ -1,0 +1,196 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f3f7fb;
+    color: #222;
+}
+
+.container {
+    width: 92%;
+    max-width: 1000px;
+    margin: 40px auto;
+}
+
+h1 {
+    text-align: center;
+    color: #24527a;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.form-box {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.card,
+.result-box {
+    background-color: white;
+    padding: 24px;
+    border-radius: 18px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+h2 {
+    color: #24527a;
+    margin-top: 0;
+}
+
+label {
+    display: block;
+    margin-top: 14px;
+    margin-bottom: 6px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccd5df;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+.check {
+    font-weight: normal;
+    background-color: #f7faff;
+    padding: 12px;
+    border-radius: 10px;
+}
+
+.check input {
+    margin-right: 8px;
+}
+
+.hint {
+    color: #667;
+    font-size: 14px;
+    line-height: 1.5;
+    background-color: #f0f5fb;
+    padding: 12px;
+    border-radius: 10px;
+}
+
+button {
+    padding: 15px;
+    border: none;
+    border-radius: 14px;
+    background-color: #24527a;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #163954;
+}
+
+.drink-table {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.drink-row{
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr 1fr auto;
+    gap:10px;
+}
+
+.drink-row.header {
+    font-weight: bold;
+    color: #24527a;
+    padding: 8px 0;
+}
+
+.result-box {
+    margin-top: 30px;
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-bottom: 28px;
+}
+
+.summary-card {
+    background-color: #f0f5fb;
+    padding: 16px;
+    border-radius: 14px;
+    text-align: center;
+}
+
+.summary-card h3 {
+    margin: 0 0 8px 0;
+    color: #557;
+    font-size: 14px;
+}
+
+.summary-card p {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.drink-buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+}
+
+.drink-button {
+    background-color: #e8f0fe;
+    color: #222;
+    border: 2px solid #c9dbf7;
+    text-align: left;
+    font-weight: bold;
+}
+
+.drink-button span {
+    display: block;
+    margin-top: 8px;
+    font-size: 13px;
+    font-weight: normal;
+    color: #555;
+}
+
+@media (max-width: 800px) {
+    .drink-row {
+        grid-template-columns: 1fr;
+    }
+
+    .summary-grid,
+    .drink-buttons {
+        grid-template-columns: 1fr;
+    }
+}
+
+#addDrink{
+    margin-top:15px;
+    background:#4CAF50;
+}
+
+#addDrink:hover{
+    background:#2E7D32;
+}
+
+.delete-btn{
+    background:#d9534f;
+    padding:10px;
+}
+
+.delete-btn:hover{
+    background:#c9302c;
+}
